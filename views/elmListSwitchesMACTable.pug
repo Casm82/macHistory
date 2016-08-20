@@ -1,0 +1,21 @@
+if switchList.length
+  table#listSwitches
+    tr
+      th.sortable(data-sort="sortByIP" title="Нажмите для сортировки") IP адрес
+      th.sortable(data-sort="sortBySNMPName" title="Нажмите для сортировки")  Имя коммутатора из SNMP
+      th Описание из SNMP
+      th.sortable(data-sort="sortByLocation" title="Нажмите для сортировки") Корпус
+      th Этаж
+      th Помещение
+      th Примечание
+    each switchObj in switchList
+      tr(id=switchObj.id).switchData
+        td= switchObj.ipaddress
+        td= switchObj.snmpInfo.snmpName
+        td= switchObj.snmpInfo.snmpDecs
+        td= switchObj.location.building
+        td= switchObj.location.floor
+        td= switchObj.location.room
+        td= switchObj.description
+else
+  div Не найдено коммутаторов с включенной службой SNMP

@@ -1,0 +1,16 @@
+fieldset { margin: 0.75em; }
+fieldset div { padding: 0.25em; }
+
+section a {
+  color: black;
+  text-decoration: none;
+}
+
+section a:hover {
+  color: #005A9B;
+}
+
+.macValue, .swAddress {
+  cursor: pointer;
+  color:  blue;
+}

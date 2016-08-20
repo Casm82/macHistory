@@ -1,0 +1,16 @@
+extends layout
+block css
+  link(rel='stylesheet', href='/styles/switchMACTable.css')
+block scripts
+  script(src="/scripts/switchMACTable.js")
+block header
+  | Для просмотра MAC-адресов на портах, выберите коммутатор из таблицы.
+  div Отображены только коммутаторы, которые включены в&nbsp
+    a(href="/listSwitches")
+      |настройках
+    |, и у которых&nbsp
+    a(href="/statusSwitches")
+      |доступна служба SNMP.
+  div Доступна сортировка таблицы по колонкам: "IP адрес", "Имя коммутатора из SNMP", "Корпус".
+block content
+ div#crt

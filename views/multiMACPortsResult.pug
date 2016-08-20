@@ -1,0 +1,35 @@
+extends layout
+block css
+  link(rel='stylesheet', href='/styles/searchMACResult.css')
+block scripts
+  script(src="/scripts/searchMACResult.js")
+block header
+  div= title
+  div
+    a(href="/multiMACPorts")
+      button
+        | Повторить поиск
+block content
+ div#crt
+  table
+    tr
+      th Коммутатор/порт
+      th Количество MAC-адресов
+    each histRec in switchList
+      tr
+        td(id=histRec.switchId.toString()).switchInfo
+          div IP коммутатора:&nbsp
+            = histRec.ipaddress
+            | &nbsp(
+            = histRec.snmpName
+            | )
+          div Расположение:&nbsp
+            | корпус:&nbsp
+            = histRec.location.building
+            | , этаж:&nbsp
+            = histRec.location.floor
+            | , помещение:&nbsp
+            = histRec.location.room
+          div Порт:&nbsp
+            = histRec.ifIndex
+        td= histRec.count

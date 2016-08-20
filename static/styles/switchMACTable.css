@@ -1,0 +1,40 @@
+table#listSwitches {
+  border: 1px solid #000;
+}
+
+th, td {
+  border: 1px solid #000;
+  padding:  0.25em 0.5em;
+}
+
+table#listSwitches td {
+  cursor: pointer;
+  padding: 0.25em;
+}
+
+table#listSwitches tr:nth-child(odd){
+  background: #FFF;
+}
+
+table#listSwitches tr:nth-child(even){
+  background: #E0E0E0;
+}
+
+.mac {
+  font-family: monospace;
+}
+
+table#listSwitches tr.switchData:hover {
+  background-color: lightgreen;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.sortable {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  -moz-text-decoration-style: dotted;
+}

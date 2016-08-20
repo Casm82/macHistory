@@ -1,0 +1,64 @@
+body {
+  font: normal 14px/16px tahoma, sans;
+}
+
+header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  color: #FFF;
+  background: #4C9ED9;
+  border-bottom: 2px solid silver;
+}
+
+header a { font-weight: bolder;
+  color: #FFF;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  -moz-text-decoration-style: dotted;
+}
+
+header a:hover { color: black; }
+
+#logo, #headerLeft {
+  margin: 0.25em;
+  float: left;
+}
+
+#headerRight {
+  float: right;
+}
+
+#headerRight div {
+  text-align: right;
+}
+
+h1 { font-size: 1.1em;}
+
+h2 { font-size: 1.0em;}
+
+select, input, button {
+  margin: 0.1em;
+  border: 2px solid lightgrey;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: white;
+}
+
+section { padding: 5em 0 1em; }
+
+footer {
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
+  font-size: 0.85em;
+  text-align: right;
+  z-index: 1;
+  background: #FFF;
+  border: 1px solid silver;
+  border-radius: 2px;
+  padding: 0 0.25em;
+}

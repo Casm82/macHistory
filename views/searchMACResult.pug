@@ -1,0 +1,54 @@
+extends layout
+block css
+  link(rel='stylesheet', href='/styles/searchMACResult.css')
+block scripts
+  script(src="/scripts/searchMACResult.js")
+block header
+  div MAC адрес&nbsp
+    strong= mac.toUpperCase()
+    | &nbspбыл зарегистрирован на следующих коммутаторах
+  div
+    a(href="/searchMAC")
+      button
+        | Повторить поиск
+block content
+  div#crt
+    if (historyArr && historyArr.length)
+      table
+        tr
+          th Коммутатор/порт
+          th MAC
+          th Vlan
+          th Зарегистрирован
+        each histRec in historyArr
+          tr
+            td(id=histRec._id.switchId._id.toString()).switchInfo
+              div IP коммутатора:&nbsp
+                = histRec._id.switchId.ipaddress
+                | &nbsp(
+                = histRec._id.switchId.snmpInfo.snmpName
+                | )
+              div Расположение:&nbsp
+                | корпус:&nbsp
+                = histRec._id.switchId.location.building
+                | , этаж:&nbsp
+                = histRec._id.switchId.location.floor
+                | , помещение:&nbsp
+                = histRec._id.switchId.location.room
+              div Порт:&nbsp
+                = histRec._id.ifIndex
+            td
+              each macsArr in histRec["macsArr"]
+                div.mono= macsArr.mac.toUpperCase()
+            td
+              each macsArr in histRec["macsArr"]
+                div= macsArr.vlan
+            td
+              each macsArr in histRec["macsArr"]
+                div= macsArr.ts.toLocaleString()
+    else
+      div Не найдено информации об указанном MAC-адресе.
+      div Возможно, интерфейс, с требуемым адресом, подключен к коммутатору, который не прописан в&nbsp
+        a(href="/listSwitches") настройках.
+      div Возможно, с момента подключения сетевой карта к комутатору ещё не выполнялся сбор статистики. Запустите&nbsp
+        a(href="/collectMAC") сбор статистики вручную.

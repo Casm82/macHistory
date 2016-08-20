@@ -1,0 +1,29 @@
+table#listMACS
+  tr
+    th Коммутатор/порт
+    th Данные о портах
+  each histRec in historyArr
+    tr
+      td
+        div IP коммутатора:&nbsp
+          = histRec._id.switchId.ipaddress
+        div Расположение:&nbsp
+          | корпус:&nbsp
+          = histRec._id.switchId.location.building
+          | , этаж:&nbsp
+          = histRec._id.switchId.location.floor
+          | , помещение:&nbsp
+          = histRec._id.switchId.location.room
+        div Порт:&nbsp
+          = histRec._id.ifIndex
+      td
+        table
+          tr
+            th MAC
+            th Vlan
+            th Зарегистрирован
+          each macsArr in histRec["macsArr"]
+            tr
+              td= macsArr.mac
+              td= macsArr.vlan
+              td= macsArr.ts.toLocaleString()

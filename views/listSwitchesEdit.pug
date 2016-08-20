@@ -1,0 +1,12 @@
+extends layout
+block css
+  link(rel='stylesheet', href='/styles/listSwitches.css')
+block scripts
+  script(src="/scripts/listSwitches.js")
+block header
+  div
+    button#addSwitches Добавить коммутатор
+    button#saveSwitches Сохранить список
+  div Доступна сортировка таблицы по колонкам: "Вкл.", "IP адрес", "Корпус"
+block content
+  div#crt Выполняется загрузка списка коммутаторов

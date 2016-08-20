@@ -1,0 +1,29 @@
+extends layout
+block css
+  link(rel='stylesheet', href='/styles/listVlans.css')
+block scripts
+  script(src="/scripts/listVlans.js")
+block header
+  div
+    button#saveVlans Сохранить список
+  div
+    button#getVlans Получить список vlan-ов с маршрутизатора
+block content
+  div#crt
+    table
+      tbody
+        tr
+          th Вкл.
+          th Номер vlan
+          th Описание
+        each vlan in vlanList
+          tr
+            td
+              if vlan.enabled
+                input(name="enabled" type="checkbox" checked)
+              else
+                input(name="enabled" type="checkbox")
+            td
+              input(name="ids" value= vlan._id size="5" pattern="\\d{1,3}")
+            td
+              input(name="desc" value= vlan.description size="50")

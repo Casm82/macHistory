@@ -1,0 +1,10 @@
+extends layout
+block css
+block scripts
+block header
+  div Укажите минимальное количество MAC-адресов на порту
+block content
+  form(action="/multiMACPorts" method="POST")
+    div Минимальное количество MAC-адресов на порту:&nbsp
+      input(name="macsOnPort" type="number" min="2" max="256" value="2")
+      input(type="submit")

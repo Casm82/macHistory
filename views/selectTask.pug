@@ -1,0 +1,62 @@
+extends layout
+block css
+  link(rel='stylesheet', href='/styles/selectTask.css')
+  link(rel='stylesheet', href='/styles/searchMACResult.css')
+block scripts
+  script(src="/scripts/selectTask.js")
+block header
+  div Зарегистрированно&nbsp
+    =stats.macsCount
+    | &nbspMAC-адресов на&nbsp
+    =stats.switchCount
+    | &nbspкоммутаторах.
+  div Выберите задачу из списка ниже.
+block content
+ div#crt
+  fieldset
+    legend
+      strong Поиск
+    div
+      a(href="/searchMAC") Найти информацию о MAC-адресе
+    div
+      a(href="/listSwitchesMACTable") Просмотреть данные о портах коммутатора
+    div
+      a(href="/multiMACPorts") Найти порты, на которых зарегистрированно несколько MAC-адресов
+    div
+      a(href="/searchMigrated") Просмотреть историю перемещений MAC-адресов
+    div
+      a(href="/mac-prefixes.txt" target="_blank") Просмотреть префиксы производителей сетевых карт
+  fieldset
+    legend
+      strong Настройки
+    div
+      a(href="/listVlans") Редактировать список Vlan-ов
+    div
+      a(href="/listSwitches") Редактировать список коммутаторов
+  fieldset
+    legend
+      strong Сбор информации
+    div
+      a(href="/statusSwitches") Проверить доступность службы SNMP у коммутаторах
+    div
+      a(href="/collectMAC") Получить MAC-адреса на портах коммутаторов
+  if (lastMACs && lastMACs.length)
+    fieldset
+      legend
+        strong Последние зарегистрированные MAC-адреса
+      table
+        tr
+          th Дата
+          th MAC-адрес
+          th IP коммутатора
+          th SNMP-имя коммутатора
+          th Порт
+          th Vlan
+        each lastMACrec in lastMACs
+          tr
+            td= lastMACrec.ts.toLocaleString()
+            td.macValue.mono= lastMACrec.macHex.toUpperCase()
+            td.swAddress(id=lastMACrec.switchId.toString())= lastMACrec.switchIP
+            td= lastMACrec.switchSNMPName
+            td= lastMACrec.ifIndex
+            td= lastMACrec.vlanId

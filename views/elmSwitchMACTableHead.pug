@@ -1,0 +1,17 @@
+div Данные о MAC адресах на портах коммутатора:&nbsp
+  strong= switchDetail.ipaddress
+  | &nbsp(SNMP-имя:&nbsp
+  span= switchDetail.snmpInfo.snmpName
+  | )
+div Расположение: корпус&nbsp
+  = switchDetail.location.building
+  | , этаж:&nbsp
+  = switchDetail.location.floor
+  | , помещение&nbsp
+  = switchDetail.location.room
+  |.  Описание:&nbsp
+  = switchDetail.description
+div
+  a(href="/listSwitchesMACTable")
+    button
+      | Выбрать другой коммутатор

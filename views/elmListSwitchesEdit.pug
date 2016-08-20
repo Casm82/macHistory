@@ -1,0 +1,114 @@
+- var exclPortsTitle = "Вручную задать исключение портов, если коммутатор не поддерживает определение статусов learned, mgmt"
+table#switchesTable
+  tr
+    th.sortable(data-sort="sortByEnable" title="Нажмите для сортировки") Вкл.
+    th SNMP
+    th.sortable(data-sort="sortByIP" title="Нажмите для сортировки") IP адрес
+    th Метод сбора
+    th(title=exclPortsTitle) Искл. порты
+    th Исключить порты
+    th.sortable(data-sort="sortByLocation" title="Нажмите для сортировки") Корпус
+    th Этаж
+    th Помещение
+    th Примечание
+    th Удалить
+  tr#switchTemplate(hidden)
+    td
+      input(name="enabled" type="checkbox" checked)
+    td
+      input(name="snmpEnabled" type="checkbox" disabled)
+    td
+      input.ip(name="ipaddress" size="15" placeholder="ip адрес" pattern="\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}" required)
+    td
+      select(name="mode" size="1")
+        option(selected value="0") с VLAN
+        option(value="1") без VLAN
+    td
+      input(name="collectMethod" type="checkbox" title=exclPortsTitle)
+    td
+      input(name="excludePorts" placeholder="пример:49,50" pattern="[0-9,]+" disabled size="10")
+    td
+      input(name="building" size="2" placeholder="корпус")
+    td
+      input(name="floor" size="2" placeholder="этаж")
+    td
+      input(name="room" size="10" placeholder="помещение")
+    td
+      input(name="description" size="35" placeholder="описание")
+    td
+      input(name="delSwitch" type="checkbox")
+  if switchList.length
+    each switchObj in switchList
+      tr
+        td
+          if switchObj.enabled
+            input(name="enabled" type="checkbox" checked)
+          else
+            input(name="enabled" type="checkbox")
+        td
+          if switchObj.snmpInfo.snmpEnabled
+            input(type="checkbox" disabled checked title="SNMP доступен на коммутаторе")
+          else
+            input(type="checkbox" disabled title="SNMP не доступен на коммутаторе")
+        td
+          input.ip(id=switchObj._id.toString() name="ipaddress" value=switchObj.ipaddress size="14" placeholder="ip адрес" pattern="\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}" required)
+        td
+          select(name="mode" size="1")
+            if switchObj.collectMethod.mode == 0
+              option(selected value="0") с VLAN
+              option(value="1") без VLAN
+            if switchObj.collectMethod.mode == 1
+              option(value="0") с VLAN
+              option(selected value="1") без VLAN
+        if switchObj.collectMethod.learnedPorts
+          td
+            input(name="collectMethod" title=exclPortsTitle type="checkbox" checked)
+          td
+            if switchObj.collectMethod.excludePorts&&switchObj.collectMethod.excludePorts.length
+              input(name="excludePorts" placeholder="пример:49,50" pattern="[0-9,]+" value=switchObj.collectMethod.excludePorts.toString() size="10")
+            else
+              input(name="excludePorts" placeholder="пример:49,50" pattern="[0-9,]+" size="10")
+        else
+          td
+            input(name="collectMethod" title=exclPortsTitle type="checkbox")
+          td
+            if switchObj.collectMethod.excludePorts&&switchObj.collectMethod.excludePorts.length
+              input(name="excludePorts" disabled placeholder="пример:49,50" pattern="[0-9,]+" value=switchObj.collectMethod.excludePorts.toString() size="10")
+            else
+              input(name="excludePorts" disabled placeholder="пример:49,50" pattern="[0-9,]+" size="10")
+        td
+          input(name="building" value=switchObj.location.building size="2" placeholder="корпус")
+        td
+          input(name="floor" value=switchObj.location.floor size="2" placeholder="этаж")
+        td
+          input(name="room" size="10" value=switchObj.location.room placeholder="помещение")
+        td
+          input(name="description" value=switchObj.description size="35" placeholder="описание")
+        td
+          input(name="delSwitch" type="checkbox")
+  else
+    tr
+      td
+        input(name="enabled" type="checkbox" checked)
+      td
+        input(name="snmpEnabled" type="checkbox" disabled)
+      td
+        input.ip(name="ipaddress" size="14" placeholder="ip адрес" pattern="\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}" required)
+      td
+        select(name="mode" size="1")
+          option(selected value="0") с VLAN
+          option(value="1") без VLAN
+      td
+        input(name="collectMethod" type="checkbox")
+      td
+        input(name="excludePorts" placeholder="пример:49,50" pattern="[0-9,]+" disabled size="10")
+      td
+        input(name="building" size="4" placeholder="корпус")
+      td
+        input(name="floor" size="4" placeholder="этаж")
+      td
+        input(name="room" size="10" placeholder="помещение")
+      td
+        input(name="description" size="35" placeholder="описание")
+      td
+        input(name="delSwitch" type="checkbox")

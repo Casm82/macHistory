@@ -1,0 +1,44 @@
+extends layout
+block css
+  link(rel='stylesheet', href='/styles/searchMACResult.css')
+block scripts
+block header
+  div= title
+block content
+ div#crt
+  table
+    tr
+      th MAC
+      th Зарегистрирован
+      th IP коммутатора
+      th Интерфейс
+      th Vlan
+      th SNMP-имя
+      th Расположение
+    each locArr,mac in listMigrated
+      tr
+        td.mono= mac.toUpperCase()
+        td
+          each locItem in locArr
+            div= locItem.ts.toLocaleString()
+        td
+          each locItem in locArr
+            div= locItem.ipaddress
+        td.center
+          each locItem in locArr
+            div= locItem.ifIndex
+        td.center
+          each locItem in locArr
+            div= locItem.vlan
+        td
+          each locItem in locArr
+            div= locItem.snmpName
+        td
+          each locItem in locArr
+            div Расположение:&nbsp
+              | корпус:&nbsp
+              = locItem.location.building
+              | , этаж:&nbsp
+              = locItem.location.floor
+              | , помещение:&nbsp
+              = locItem.location.room

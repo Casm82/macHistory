@@ -1,0 +1,25 @@
+if switchPortsArr.length
+  table#listPorts
+    tr
+      th Порт
+      th Vlan
+      th MAC
+      th Зарегистрирован
+    each switchObj in switchPortsArr
+      //- tr(id=switchObj._id.switchId).switchData
+      tr.switchData
+        td= switchObj._id.ifIndex
+        td
+          each macObj in switchObj.macsArr
+            div= macObj.vlan
+        td
+          each macObj in switchObj.macsArr
+            div.mac= macObj.mac.toUpperCase()
+        td
+          each macObj in switchObj.macsArr
+            div= macObj.ts.toLocaleString()
+else
+  div Для&nbsp
+    a(href="/listVlans")
+      |выбранных vlan-ов
+    |&nbspне найдено данных о MAC-адресах на портах коммутаторов

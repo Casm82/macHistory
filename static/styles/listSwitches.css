@@ -1,0 +1,21 @@
+#crt input {
+  margin: 0.25em 0.5em;
+}
+
+table {
+  background-color: lightgrey;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #000;
+  padding: 0.25em;
+  text-align: center;
+}
+
+.sortable {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  -moz-text-decoration-style: dotted;
+}

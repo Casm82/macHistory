@@ -1,0 +1,21 @@
+table {
+  margin: 1em;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #000;
+  padding: 0.25em;
+}
+
+.enabled  { background-color: lime; }
+.disabled { background-color: grey; }
+.error    { background-color: red; }
+
+.col1 { width:  9em; }
+.col2 { width:  3em; }
+.col3 { width:  3em; }
+.col6 { width:  5em; }
+.col7 { width:  5em; }
+.col8 { width:  5em; }
+.col9 { width: 12em; }

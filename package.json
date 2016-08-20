@@ -1,0 +1,22 @@
+{
+  "name": "macHistory",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Collect mac-address on network switches",
+  "main": "app.js",
+  "author": "Casm",
+  "license": "GPL v3",
+  "dependencies": {
+    "activedirectory": "^0.7.2",
+    "async": "^2.0.1",
+    "connect-mongodb-session": "^0.1.1",
+    "express": "^4.14.0",
+    "express-middlewares": "^0.1.1",
+    "express-session": "^1.14.0",
+    "mongoose": "^4.5.9",
+    "net-snmp": "^1.1.18",
+    "passport": "^0.3.2",
+    "passport-negotiate": "^0.1.4",
+    "pug": "^2.0.0-beta5"
+  }
+}

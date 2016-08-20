@@ -1,0 +1,18 @@
+{
+  "port":       3002,
+  "authLog":    "/var/log/webApps/macAuth.log",
+  "searchLog":  "/var/log/webApps/macSearch.log",
+  "rootSwitch": "192.168.1.2",
+  "community":  "company",
+  "maxVlan":    1000,
+  "learnedStatus": 3,
+  "mgmtStatus":    5,
+  "groupName":     "Support",
+  "domain":        "company.ru",
+  "mongoConnection": "mongodb://macHistDB:xxxxxx:27017/machistory",
+  "ldapConfig":  {
+    "url":    "ldap://172.16.1.12",
+    "baseDN":  "dc=company,dc=ru",
+    "username":  "support@company.ru",
+    "password":  "xxxxxxx" }
+}

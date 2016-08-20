@@ -1,0 +1,35 @@
+extends layout
+block css
+  link(rel='stylesheet', href='/styles/collectMAC.css')
+block scripts
+  script(src="/scripts/collectMAC.js")
+block header
+  div Для запуска сбора MAC-адресов на портах коммутаторов, указанных ниже, нажмите
+    button#checkSwitches Старт
+  div Отображены только коммутаторы, которые включены в&nbsp
+    a(href="/listSwitches")
+      |настройках
+    |, и у которых&nbsp
+    a(href="/statusSwitches")
+      |доступна служба SNMP.
+block content
+ div#crt
+  if switchList.length
+    table
+      tr
+        th Адрес коммутатора
+        th Имя коммутатора из SNMP
+        th Описание из SNMP
+        th Корпус
+        th Этаж
+        th Помещение
+        th Примечание
+      each switchObj in switchList
+        tr(id=switchObj.id)
+          td= switchObj.ipaddress
+          td= switchObj.snmpInfo.snmpName
+          td= switchObj.snmpInfo.snmpDecs.slice(0,18)
+          td= switchObj.location.building
+          td= switchObj.location.floor
+          td= switchObj.location.room
+          td= switchObj.description

@@ -1,0 +1,14 @@
+table
+  tbody
+    tr
+      th Вкл.
+      th Номер vlan
+      th Описание
+    each vlan in vlanList
+      tr
+        td
+          input(name="enabled" type="checkbox" checked)
+        td
+          input(name="ids" value= vlan.id size="5" pattern="\\d{1,3}")
+        td
+          input(name="desc" value= vlan.desc size="50")

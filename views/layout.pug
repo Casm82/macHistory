@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title= title
+    link(rel='stylesheet', href='/styles/layout.css')
+    block css
+    block scripts
+  body
+    header
+      div#logo
+        a(href="/")
+          img(src="/images/logo.png")
+      div#headerLeft
+        block header
+      div#headerRight
+        if (session)
+          div Вы вошли как:&nbsp
+            = session
+          if (authType == "ldap")
+            div
+              a(href='/logout') Выйти
+    section
+      block content
+    footer
+      small 17.06.2016

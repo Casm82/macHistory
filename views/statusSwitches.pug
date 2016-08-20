@@ -1,0 +1,55 @@
+extends layout
+block css
+  link(rel='stylesheet', href='/styles/statusSwitches.css')
+block scripts
+  script(src="/scripts/statusSwitches.js")
+block header
+  div Для запуска проверки доступности службы SNMP на коммутаторах нажмите кнопку&nbsp
+    button#checkSwitches Старт
+  div Список коммутаторов задётся на странице&nbsp
+    a(href="/listSwitches")
+      |настройки.
+block content
+ div#crt
+  if switchList.length
+    table
+      col.col1
+      col.col2
+      col.col3
+      col.col4
+      col.col5
+      col.col6
+      col.col7
+      col.col8
+      col.col9
+      tr
+        th Адрес коммутатора
+        th Вкл.
+        th SNMP
+        th Имя коммутатора из SNMP
+        th Описание из SNMP
+        th Корпус
+        th Этаж
+        th Помещение
+        th Примечание
+      each switchObj in switchList
+        - var swEnabled = switchObj.enabled?"да":"нет"
+        - var snmpEnabled = switchObj.snmpInfo.snmpEnabled?"да":"нет"
+        if switchObj.enabled
+          if switchObj.snmpInfo.snmpEnabled
+            - var swClass = "enabled"
+          else
+            - var swClass = "error"
+        else
+          - var swClass = "disabled"
+
+        tr(id=switchObj.id class=swClass)
+          td= switchObj.ipaddress
+          td= swEnabled
+          td= snmpEnabled
+          td= switchObj.snmpInfo.snmpName
+          td= switchObj.snmpInfo.snmpDecs
+          td= switchObj.location.building
+          td= switchObj.location.floor
+          td= switchObj.location.room
+          td= switchObj.description
